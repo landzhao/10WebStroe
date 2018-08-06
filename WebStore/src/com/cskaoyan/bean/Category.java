@@ -2,23 +2,24 @@ package com.cskaoyan.bean;
 
 public class Category {
 
-    String id;
+    Integer cid;
     String cname ;
+
 
     @Override
     public String toString() {
         return "Category{" +
-                "id='" + id + '\'' +
+                "cid='" + cid + '\'' +
                 ", cname='" + cname + '\'' +
                 '}';
     }
 
-    public String getId() {
-        return id;
+    public Integer getCid() {
+        return cid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCid(Integer cid) {
+        this.cid = cid;
     }
 
     public String getCname() {

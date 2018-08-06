@@ -115,19 +115,66 @@ body {
 							</div>
 						</td>
 					</tr>
-					 
-					
-				</table>
+
+				<c:forEach items="${categoriesList}"  var="category">
+
+					<tr>
+						<td width="4%" height="20" bgcolor="#d3eaef" class="STYLE10"><div
+								align="center">
+							<input type="checkbox" name="checkbox" id="checkbox11" />
+						</div>
+						</td>
+						<td width="10%" height="20" bgcolor="#d3eaef" class="STYLE6"><div
+								align="center">
+							<span class="STYLE10">${category.cid}</span>
+						</div>
+						</td>
+						<td width="15%" height="20" bgcolor="#d3eaef" class="STYLE6"><div
+								align="center">
+							<span class="STYLE10">${category.cname}</span>
+						</div>
+						</td>
+						<td width="14%" height="20" bgcolor="#d3eaef" class="STYLE6"><div
+								align="center">
+								<span class="STYLE10">
+								<a href="${pageContext.request.contextPath }/CategoryServlet?op=toupdateCategory&cid=${category.cid}">编辑</a>|
+								<a href="${pageContext.request.contextPath }/CategoryServlet?op=deleteCategory&cid=${category.cid}">删除</a>
+								</span>
+						</div>
+						</td>
+					</tr>
+
+				</c:forEach>
+
+
+			</table>
 			</td>
 		</tr>
 
-		<tr>
-			<td height="30">
-				 
-			</td>
-		</tr>
+
 	</table>
 	</form>
+
+	<script type="text/javascript">
+
+        function jump() {
+
+            var num = document.getElementById("num").value;
+            if (!/^[1-9][0-9]*$/.test(num)) {
+                alert("请输入正确的页码");
+                return;
+            }
+
+            if (num > ${pageInfo.totalPageNum}) {
+                alert("页码超出范围");
+                return;
+            }
+
+            window.location.href = "${pageContext.request.contextPath }/CategoryServlet?op=findAllCategory&num="
+                + num;
+
+        }
+	</script>
 
 </body>
 </html>

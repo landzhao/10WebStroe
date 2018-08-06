@@ -1,14 +1,28 @@
 package com.cskaoyan.servcie;
 
-import com.cskaoyan.dao.CategoryDao;
+import com.cskaoyan.bean.Category;
 
-public class CategoryService {
+import java.sql.SQLException;
+import java.util.List;
 
-    CategoryDao dao ;
+public interface CategoryService {
+
+      boolean addCategory(String cname) throws SQLException;
+
+      List<Category> findAllCategory() throws SQLException;
 
 
 
-    public boolean addCategory(String cname) {
-        return  dao.addCategory(cname);
-    }
+      boolean updateCategory(Category category) throws SQLException;
+
+      boolean deleteCategory(int cid) throws SQLException;
+
+
+      void deleteCategories(String[] cids);
+
+       Category getCategoryByCid(String cid) throws SQLException, Exception;
+
+
+    boolean isCategoryNameAvailable(String cname) throws SQLException;
+
 }

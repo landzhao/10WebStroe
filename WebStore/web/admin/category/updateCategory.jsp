@@ -108,8 +108,8 @@ body {
 								align="left">
  							 <span style="color:red">*</span> 
 						
-						<input type="text" name="cname" value="<%=request.getParameter("cname")%>"/>
-					 						 
+						<input type="text" name="cname" value="${category.cname}"/>
+
 							</div>
 						</td>
 						 
