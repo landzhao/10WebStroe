@@ -47,8 +47,8 @@ body {
 </head>
 
 <body>
-	<form method="post" action="${pageContext.request.contextPath }/AddProductServlet" enctype="multipart/form-data">
- 	<table width="100%" border="0" align="center" cellpadding="0"
+	<form method="post" action="${pageContext.request.contextPath }/admin/MultipartProductServlet?op=addProduct" enctype="multipart/form-data">
+	<table width="100%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
 		<tr>
 			<td height="30">
@@ -196,7 +196,7 @@ body {
 						<td width="80%" height="20" bgcolor="d3eaef" class="STYLE6"><div
 								align="left">
  							 
-						<input type="text" name="estoreprice"/><br>
+						<input type="text" name="estorePrice"/><br>
 						 
 							</div>
 						</td>
@@ -218,7 +218,7 @@ body {
 						<td width="80%" height="20" bgcolor="d3eaef" class="STYLE6"><div
 								align="left">
  							 
-						<input type="text" name="markprice"/><br>
+						<input type="text" name="markPrice"/><br>
 						 
 							</div>
 						</td>
@@ -239,7 +239,7 @@ body {
 						<td width="80%" height="20" bgcolor="d3eaef" class="STYLE6"><div
 								align="left">
  							 
- 							<input type="file" name="imgurl"/><br>						 
+ 							<input type="file" name="imgUrl"/><br>
 							</div>
 						</td>
 						 

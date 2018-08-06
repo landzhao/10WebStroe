@@ -2,7 +2,7 @@ package com.cskaoyan.dao.impl;
 
 import com.cskaoyan.bean.Category;
 import com.cskaoyan.dao.CategoryDao;
-import com.cskaoyan.utils.MyC3PODataSouce;
+import com.cskaoyan.utils.MyC3P0DataSouce;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -18,7 +18,7 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public boolean addCategory(String cname) throws SQLException {
 
-        QueryRunner queryRunner = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner queryRunner = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         int update = queryRunner.update("insert into t_category values (null,?);", cname);
 
@@ -27,7 +27,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public List<Category> findAllCategory() throws SQLException {
-        QueryRunner qr = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner qr = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         List<Category> query = qr.query("select * from t_category", new BeanListHandler<Category>(Category.class));
 
@@ -37,7 +37,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public int findTotalNumber() throws SQLException {
-        QueryRunner qr = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner qr = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         Long query = (Long) qr.query("select count(*) from t_category", new ScalarHandler());
 
@@ -46,7 +46,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public List<Category> findPartCategory(int limit, int offset) throws SQLException {
-        QueryRunner qr = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner qr = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         List<Category> query = qr.query("select * from t_category limit ? offset ?",
                 new BeanListHandler<Category>(Category.class),
@@ -64,7 +64,7 @@ public class CategoryDaoImpl implements CategoryDao {
         boolean ret =false;
 
 
-        QueryRunner qr = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner qr = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         try {
             int update = qr.update("update   t_category  set   cname =? where cid =? ;", category.getCname(),category.getCid());
@@ -93,7 +93,7 @@ public class CategoryDaoImpl implements CategoryDao {
         boolean ret =false;
 
 
-        QueryRunner qr = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner qr = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         try {
             int update = qr.update("delete  from t_category    where cid =? ;", cid);
@@ -121,7 +121,7 @@ public class CategoryDaoImpl implements CategoryDao {
         Connection connection =null;
         try {
 
-            connection = MyC3PODataSouce.getConnection();
+            connection = MyC3P0DataSouce.getConnection();
 
             Object[][] params = new Object[cids.length][];
 
@@ -165,7 +165,7 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public Category getCategoryByCid(int cid) throws SQLException {
         // TODO Auto-generated method stub
-        QueryRunner qr = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner qr = new QueryRunner(MyC3P0DataSouce.getDataSource());
 
         Category query = qr.query("select * from t_category where cid =?", new BeanHandler<Category>(Category.class), cid);
 
@@ -175,7 +175,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public boolean isCategoryNameAvailable(String cname) throws SQLException {
-        QueryRunner queryRunner = new QueryRunner(MyC3PODataSouce.getDataSource());
+        QueryRunner queryRunner = new QueryRunner(MyC3P0DataSouce.getDataSource());
         Long query = (Long)queryRunner.query("select count(*) from t_category where cname = ?", new ScalarHandler(), cname);
         return 1L != query;
     }

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MyC3PODataSouce {
+public class MyC3P0DataSouce {
     private  static DataSource dataSource;
     static {
         dataSource = new ComboPooledDataSource("mysql");

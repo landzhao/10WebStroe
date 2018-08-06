@@ -151,10 +151,10 @@ body {
 								<div align="center">${product.pname}</div>
 							</td>
 							<td height="20" bgcolor="#FFFFFF" class="STYLE19">
-								<div align="center">${product.estoreprice}</div>
+								<div align="center">${product.estorePrice}</div>
 							</td>
 							<td height="20" bgcolor="#FFFFFF" class="STYLE19">
-								<div align="center">${product.markprice}</div>
+								<div align="center">${product.markPrice}</div>
 							</td>
 							<td height="20" bgcolor="#FFFFFF" class="STYLE19">
 								<div align="center">${product.pnum}</div>
@@ -165,7 +165,7 @@ body {
 							<td height="20" bgcolor="#FFFFFF">
 								<div align="center" class="STYLE21">
 									<a href="${pageContext.request.contextPath }/ProductServlet?op=deleteOne&pid=${product.pid}">删除</a> | 
-									<a href="${pageContext.request.contextPath }/CategoryServlet?op=findCategoryByUpdate&pid=${product.pid}">编辑</a>
+									<a href="${pageContext.request.contextPath }/admin/ProductServlet?op=findProductByUpdate&pid=${product.pid}">编辑</a>
 								</div>
 							</td>
 					</tr>
