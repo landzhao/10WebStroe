@@ -116,7 +116,7 @@ body {
 						</td>
 					</tr>
 
-				<c:forEach items="${categoriesList}"  var="category">
+				<c:forEach items="${page.records}"  var="category">
 
 					<tr>
 						<td width="4%" height="20" bgcolor="#d3eaef" class="STYLE10"><div
@@ -151,6 +151,66 @@ body {
 			</td>
 		</tr>
 
+
+		<tr>
+			<td height="30">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="33%"><div align="left">
+								<span class="STYLE22">&nbsp;&nbsp;&nbsp;&nbsp;共有<strong>
+									${page.totalRecordsNum }</strong> 条记录，当前第<strong>${page.currentPageNum }</strong> 页，共 <strong>${page.totalPageNum }</strong> 页</span>
+						</div>
+						</td>
+						<td width="67%">
+							<table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="49">
+										<div align="center">
+											<span class="STYLE22">
+											<a href="${pageContext.request.contextPath }/CategoryServlet?op=findAllCategory&num=1">首页</a>
+											</span>
+										</div>
+									</td>
+									<td width="49">
+										<div align="center">
+											<span class="STYLE22">
+											<a href="${pageContext.request.contextPath }/CategoryServlet?op=findAllCategory&num=${page.prevPageNum}">上一页</a>
+											</span>
+										</div>
+									</td>
+									<td width="49"><span class="STYLE22">
+									    <div align="center">
+											<span class="STYLE22">
+											<a href="${pageContext.request.contextPath }/CategoryServlet?op=findAllCategory&num=${page.nextPageNum}">下一页</a>
+											</span>
+										</div>
+									</td>
+									<td width="49">
+										<div align="center">
+											<span class="STYLE22"><a href="${pageContext.request.contextPath }/CategoryServlet?op=findAllCategory&num=${page.totalPageNum }">尾页</a></span>
+										</div>
+									</td>
+									<td width="37" class="STYLE22"><div align="center">转到</div>
+									</td>
+									<td width="22">
+										<div align="center">
+											<input type="text" name="num" id="num" value="${page.currentPageNum }" style="width:20px; height:12px; font-size:12px; border:solid 1px #7aaebd;" />
+										</div>
+									</td>
+									<td width="22" class="STYLE22"><div align="center">页</div>
+									</td>
+									<td width="35">
+										<div align="center">
+											<span class="STYLE22"><a style="cursor:pointer;" onclick="jump()">跳转</a></span>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
 	</table>
 	</form>

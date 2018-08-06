@@ -3,6 +3,7 @@ package com.cskaoyan.controller;
 import com.cskaoyan.bean.Category;
 import com.cskaoyan.servcie.CategoryService;
 import com.cskaoyan.servcie.impl.CategoryServiceImpl;
+import com.cskaoyan.utils.PageHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -102,7 +103,7 @@ public class CategoryServlet extends HttpServlet {
      */
     private void findAllCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try {
+      /*  try {
             List<Category> categoriesList=	categoryService.findAllCategory();
 
             request.setAttribute("categoriesList", categoriesList);
@@ -117,10 +118,30 @@ public class CategoryServlet extends HttpServlet {
             //这里写异常的处理的页面
 
             response.getWriter().println("添加类别发生了异常，请联系管理员! 异常的信息如下:"+e.getMessage());
+        }*/
+
+
+        //当前用户传入的分页的第几页
+        String num = request.getParameter("num");
+        if (num==null||num.isEmpty()){
+
+            num="1";
         }
 
+        //调用太多的API不简洁，其次不通用
+        //代码的复用 需要考虑更通用的做法
+        //低耦合，高内聚
+
+        PageHelper<Category>  pageHelper= null;
+        try {
+            pageHelper = categoryService.findCategoryListByPagenumber(num);
+            request.setAttribute("page",pageHelper);
+            request.getRequestDispatcher("/admin/category/categoryList.jsp").forward(request, response);
 
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
 

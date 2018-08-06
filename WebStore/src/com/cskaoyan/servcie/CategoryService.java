@@ -1,6 +1,7 @@
 package com.cskaoyan.servcie;
 
 import com.cskaoyan.bean.Category;
+import com.cskaoyan.utils.PageHelper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,5 +25,8 @@ public interface CategoryService {
 
 
     boolean isCategoryNameAvailable(String cname) throws SQLException;
+
+    PageHelper<Category> findCategoryListByPagenumber(String num) throws SQLException;
+
 
 }
