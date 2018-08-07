@@ -48,9 +48,9 @@
 		
 	</head>
 <body>
-	<form method="post" action="${pageContext.request.contextPath }/AddProductServlet" >
-		 
-		 
+	<form method="post" action="${pageContext.request.contextPath }/admin/ProductServlet" >
+ 		<input type="hidden" name="num" value="1">
+		 <input type="hidden" name="op" value="multiConditionSearch">
 		 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 		 
 		 	 <tr>
@@ -96,14 +96,15 @@
 								<td height="22" align="center" bgColor="#a8c7ce"    >
 									商品编号：</td>
 								<td class="ta_01" bgcolor="#a8c7ce"><input type="text"
-									name="id" size="15" value="" id="Form1_userName" />
+									name="pid" size="15" value="" id="Form1_userName" />
 								</td>
 								<td height="22" align="center" bgcolor="#a8c7ce"  >
 									品牌：</td>
 								<td   bgcolor="#a8c7ce">
 								
 								<select name="cid" id="st" onchange="change()">
-								<c:forEach items="${categories}" var="category">
+									<option value="">无</option>
+									<c:forEach items="${categories}" var="category">
 									<option value="${category.cid}">${category.cname}</option>
 								</c:forEach>	
 							    </select>
@@ -116,7 +117,7 @@
 								<td height="22" align="center" bgcolor="#a8c7ce"  >
 									商品名称：</td>
 								<td   bgcolor="#a8c7ce"><input type="text"
-									name="name" size="15" value="" id="Form1_userName" class="bg" />
+									name="pname" size="15" value="" id="Form1_userName" class="bg" />
 								</td>
 								<td height="22" align="center" bgcolor="#a8c7ce"  >
 									价格区间(元)：</td>

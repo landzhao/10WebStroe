@@ -2,6 +2,7 @@ package com.cskaoyan.dao;
 
 
 import com.cskaoyan.bean.Product;
+import com.cskaoyan.form.SearchCondition;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -28,4 +29,13 @@ public interface ProductDao {
 
     List<Object> findProductByName(String name) throws SQLException;
 
- }
+    int findProductCountByMultiCondition(String pid, String cid, String pname, String minprice, String maxprice);
+
+    List<Product> findProductsByMultiCondition(String pid, String cid, String pname, String minprice, String maxprice) throws SQLException;
+
+    int findAllSearchProductCount(SearchCondition condition) throws SQLException;
+
+    List<Product> findPartSearchProduct(SearchCondition condition, int limit, int offset) throws SQLException;
+
+
+}

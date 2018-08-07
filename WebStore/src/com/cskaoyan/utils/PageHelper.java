@@ -6,7 +6,7 @@ public class PageHelper<T> {
     public static final int CATEGORY_PER_PAGE = 3;
     public static final int ADMIN_PER_PAGE = 2;
     public static final int PRODUCT_PER_PAGE = 5;
-    public static final int PRODUCT_SEARCH_PER_PAGE = 6;
+    public static final int PRODUCT_SEARCH_PER_PAGE = 3;
     public static final int USER_PER_PAGE = 4;
     public static final int PRODUCT_PER_PAGE_FRONT_END = 9;
     public static final int ORDER_PER_PAGE = 4;

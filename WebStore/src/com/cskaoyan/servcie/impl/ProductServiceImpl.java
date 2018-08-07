@@ -5,6 +5,7 @@ import com.cskaoyan.bean.Category;
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.dao.ProductDao;
 import com.cskaoyan.dao.impl.ProductDaoImpl;
+import com.cskaoyan.form.SearchCondition;
 import com.cskaoyan.servcie.ProductService;
 import com.cskaoyan.utils.PageHelper;
 
@@ -40,6 +41,8 @@ public class ProductServiceImpl implements ProductService {
         String s = r.toString();
         return r.size() > 0 ? s.substring(1, s.length() - 1) : "";
     }
+
+
 
 
     @Override
@@ -125,4 +128,63 @@ public class ProductServiceImpl implements ProductService {
     public boolean saveProduct(Product product) throws SQLException {
         return dao.saveProduct(product);
     }
+
+
+    @Override
+    public PageHelper<Product> findProductBYCondition(String pid, String cid, String pname, String minprice, String maxprice, String num) throws SQLException {
+
+        //
+
+        //总的记录数
+        int totalNumber=  dao.findProductCountByMultiCondition(pid,cid,pname,minprice,maxprice);
+
+        //当前的页面
+        int currentPageNumber= Integer.parseInt(num);
+
+        //总的页码
+        int recordPerPage=3;
+
+        PageHelper<Product> pageHelper =new PageHelper<>(currentPageNumber,totalNumber,recordPerPage);
+
+        List<Product> records = dao.findProductsByMultiCondition(pid,cid,pname,minprice,maxprice);
+
+
+        pageHelper.setRecords(records);
+
+        return pageHelper;
+    }
+
+
+    @Override
+    public PageHelper<Product> multiConditionSearch(SearchCondition condition, List<Category> categories, String num) throws SQLException {
+        PageHelper<Product> page = new PageHelper<>();
+
+        int currentPageNum = Integer.parseInt(num);
+
+        // 总记录数据项数 totalRecordsNum
+        page.setTotalRecordsNum(dao.findAllSearchProductCount(condition), PageHelper.PRODUCT_SEARCH_PER_PAGE);
+
+        // 当前页码 currentPageNum
+        page.setCurrentPageNum(currentPageNum);
+
+        int limit = PageHelper.PRODUCT_SEARCH_PER_PAGE;
+        int offset = limit * (currentPageNum - 1);
+
+        // 记录数据 records
+        List<Product> products = dao.findPartSearchProduct(condition, limit, offset);
+
+        // 传入每一个 category
+        for (Product product : products) {
+            for (Category category : categories) {
+                if (category.getCid() == product.getCid()) {
+                    product.setCategory(category);
+                }
+            }
+        }
+
+        page.setRecords(products);
+
+        return page;
+    }
+
 }

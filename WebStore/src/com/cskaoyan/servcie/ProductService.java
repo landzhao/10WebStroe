@@ -2,6 +2,7 @@ package com.cskaoyan.servcie;
 
 import com.cskaoyan.bean.Category;
 import com.cskaoyan.bean.Product;
+import com.cskaoyan.form.SearchCondition;
 import com.cskaoyan.utils.PageHelper;
 
 
@@ -26,4 +27,9 @@ public interface ProductService {
 
 
     String findProductByName(String key) throws SQLException;
+
+    PageHelper<Product> findProductBYCondition(String pid, String cid, String pname, String minprice, String maxprice,String num) throws SQLException;
+
+    PageHelper<Product> multiConditionSearch(SearchCondition condition, List<Category> categories, String num)  throws SQLException;
+
 }

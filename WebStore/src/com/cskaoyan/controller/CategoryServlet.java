@@ -23,8 +23,8 @@ public class CategoryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req , HttpServletResponse resp ) throws ServletException, IOException {
 
-         resp.setContentType("text/html;charset=utf-8");
-         req.setCharacterEncoding("utf-8"); //需求在取数据之前设置
+        // resp.setContentType("text/html;charset=utf-8");
+        // req.setCharacterEncoding("utf-8"); //需求在取数据之前设置
 
         String op = req.getParameter("op");
 
