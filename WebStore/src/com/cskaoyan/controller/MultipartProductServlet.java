@@ -90,7 +90,10 @@ public class MultipartProductServlet extends HttpServlet {
         }
 
         response.getWriter().write(message);
-        response.setHeader("refresh", "1;" + contentPath + "/admin/ProductServlet?op=findAllProduct&num=1");
+       // response.setHeader("refresh", "1;" + contentPath + "/admin/ProductServlet?op=findAllProduct&num=1");
+        response.setHeader("refresh", "1;" + contentPath + "/admin/ProductServlet?op=findProductByUpdate&pid="+product.getPid());
+
+
 
 
     }

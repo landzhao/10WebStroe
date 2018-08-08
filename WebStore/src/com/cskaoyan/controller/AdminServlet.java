@@ -42,12 +42,12 @@ public class AdminServlet extends HttpServlet {
                 case "updateAdmin":
                     updateAdmin(request, response);
                     break;
-                /*case "login":
+                case "login":
                     adminLogin(request, response);
                     break;
                 case "logout":
                     adminLogout(request, response);
-                    break;*/
+                    break;
             }
         }
     }

@@ -57,7 +57,7 @@
                                         <tr>
                                             <td>
                                                 <div align="right"><a
-                                                        href="${pageContext.request.contextPath }/AdminServlet?op=lgout"
+                                                        href="${pageContext.request.contextPath }/admin/AdminServlet?op=logout"
                                                         target="_parent"><img src="images/quit.gif" alt=" " width="69"
                                                                               height="17"/></a></div>
                                             </td>
