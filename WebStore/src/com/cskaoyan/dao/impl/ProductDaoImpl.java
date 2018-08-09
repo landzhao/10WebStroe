@@ -225,6 +225,24 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<Product> findSimpleSearchProduct(SearchCondition condition, int limit, int offset) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(MyC3P0DataSouce.getDataSource());
+        String pname = "%" + condition.getPname().trim() + "%";
+        return queryRunner.query("select * from product where cid <> 7 and (pname like ? or description like ?) limit ? offset ?",
+                new BeanListHandler<>(Product.class), pname, pname, limit, offset);
+    }
+
+    @Override
+    public int findSimpleSearchProductCount(SearchCondition condition) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(MyC3P0DataSouce.getDataSource());
+        String pname = "%" + condition.getPname().trim() + "%";
+        Long query = (Long) queryRunner.query("select count(*) from product where cid <> 7 and (pname like ? or description like ?) ",
+                new ScalarHandler(), pname, pname);
+        return query.intValue();
+    }
+
+
+    @Override
     public int findAllSearchProductCount(SearchCondition condition) throws SQLException {
         // 拼接 SQL 语句，加上 where true 可以避免判断 and
         String sql = "select count(*) from product where true ";

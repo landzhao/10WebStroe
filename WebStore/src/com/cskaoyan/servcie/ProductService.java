@@ -32,4 +32,13 @@ public interface ProductService {
 
     PageHelper<Product> multiConditionSearch(SearchCondition condition, List<Category> categories, String num)  throws SQLException;
 
+    List<Product> findHotProducts() throws SQLException;
+
+    List<Product> findTopProducts() throws SQLException;
+
+    PageHelper<Product> simpleConditionSearch(SearchCondition condition, String num)  throws SQLException;
+
+
+    PageHelper<Product> findProductByCid(SearchCondition condition, String num)  throws SQLException;
+
 }

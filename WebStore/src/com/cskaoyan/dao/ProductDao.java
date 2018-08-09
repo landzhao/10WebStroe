@@ -38,4 +38,14 @@ public interface ProductDao {
     List<Product> findPartSearchProduct(SearchCondition condition, int limit, int offset) throws SQLException;
 
 
+    int findSimpleSearchProductCount(SearchCondition condition) throws SQLException;
+
+    List<Product> findSimpleSearchProduct(SearchCondition condition, int limit, int offset) throws SQLException;
+
+
+    List<Product> findTopProducts() throws SQLException;
+
+
+    List<Product> findHotProducts() throws SQLException;
+
 }

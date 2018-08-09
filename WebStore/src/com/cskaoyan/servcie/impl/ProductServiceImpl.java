@@ -187,4 +187,60 @@ public class ProductServiceImpl implements ProductService {
         return page;
     }
 
+    @Override
+    public List<Product> findTopProducts() throws SQLException {
+        return dao.findTopProducts();
+    }
+
+    @Override
+    public List<Product> findHotProducts() throws SQLException {
+        return dao.findHotProducts();
+    }
+
+
+    @Override
+    public PageHelper<Product> simpleConditionSearch(SearchCondition condition, String num) throws SQLException {
+        PageHelper<Product> page = new PageHelper<>();
+
+        int currentPageNum = Integer.parseInt(num);
+
+        // 总记录数据项数 totalRecordsNum
+        page.setTotalRecordsNum(dao.findSimpleSearchProductCount(condition), PageHelper.PRODUCT_PER_PAGE_FRONT_END);
+
+        // 当前页码 currentPageNum
+        page.setCurrentPageNum(currentPageNum);
+
+        int limit = PageHelper.PRODUCT_PER_PAGE_FRONT_END;
+        int offset = limit * (currentPageNum - 1);
+
+        // 记录数据 records
+        List<Product> products = dao.findSimpleSearchProduct(condition, limit, offset);
+
+        page.setRecords(products);
+        return page;
+    }
+
+
+    @Override
+    public PageHelper<Product> findProductByCid(SearchCondition condition, String num) throws SQLException {
+        PageHelper<Product> page = new PageHelper<>();
+
+        int currentPageNum = Integer.parseInt(num);
+
+        // 总记录数据项数 totalRecordsNum
+        page.setTotalRecordsNum(dao.findAllSearchProductCount(condition), PageHelper.PRODUCT_PER_PAGE_FRONT_END);
+
+        // 当前页码 currentPageNum
+        page.setCurrentPageNum(currentPageNum);
+
+        int limit = PageHelper.PRODUCT_PER_PAGE_FRONT_END;
+        int offset = limit * (currentPageNum - 1);
+
+        // 记录数据 records
+        List<Product> products = dao.findPartSearchProduct(condition, limit, offset);
+
+        page.setRecords(products);
+        return page;
+    }
+
 }
