@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -18,18 +19,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <section class="container">
     <div class="login">
-      <h1>用户登录 <span style="text-align:center;padding-top:2px;"><font color="#ff0000">${requestScope["msg"]}</font>
-														</span></h1>
-      <form method="post" action="${pageContext.request.contextPath }/UserServlet">
+      <h1>用户登录
+        <span style="text-align:center;padding-top:2px;"><font color="#ff0000">${message}</font></span></h1>
+      <form method="post" action="${pageContext.request.contextPath }/user/UserServlet">
       
       	<input type="hidden" name="op" value="login"/>
-        <p><input type="text" name="username" value="" placeholder="用户名"></p>
-        <p><input type="password" name="password" value="" placeholder="密码"></p>
+        <p><input type="text" name="username" value="${cookie.username.value}" placeholder="用户名"></p>
+        <p><input type="password" name="password" value="${cookie.password.value}" placeholder="密码"></p>
+        <p><input type="text" name="verifyCode" placeholder="VerifyCode" style="width: 150px;">
+            <img src="${pageContext.request.contextPath}/verifyCode.jpg" alt="verifyCode" width="120px" height="30px" style="vertical-align: middle;"></p>
         <p class="remember_me">
           <label>
-            <input type="checkbox" name="remember_me" id="remember_me">
+            <input type="checkbox" name="remember_me" id="remember_me"
+                   <c:if test="${!empty cookie.password}">checked</c:if>>
             记住密码
           </label>
+        </p>
+        <p class="submit">
+          <a href="${pageContext.request.contextPath }/user/register.jsp">注册</a>
+          <a href="${pageContext.request.contextPath }/index.jsp">返回首页</a>
         </p>
         <p class="submit"><input type="submit" name="commit" value="登录"></p>
       </form>
