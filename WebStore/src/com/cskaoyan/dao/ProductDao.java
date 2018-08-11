@@ -48,4 +48,6 @@ public interface ProductDao {
 
     List<Product> findHotProducts() throws SQLException;
 
+    void minusProductCount(int intPid, int buynum) throws SQLException;
+
 }

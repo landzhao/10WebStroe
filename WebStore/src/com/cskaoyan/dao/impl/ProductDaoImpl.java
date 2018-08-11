@@ -5,13 +5,15 @@ import com.cskaoyan.bean.Product;
 import com.cskaoyan.dao.ProductDao;
 import com.cskaoyan.form.SearchCondition;
 import com.cskaoyan.utils.MyC3P0DataSouce;
+import com.cskaoyan.utils.TransactionUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
- 
- import java.sql.SQLException;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +68,12 @@ public class ProductDaoImpl implements ProductDao {
                 new BeanListHandler<>(Product.class), offset);
     }
 
-
+    @Override
+    public void minusProductCount(int pid, int pnum) throws SQLException {
+        Connection connection = TransactionUtil.get();
+        QueryRunner queryRunner = new QueryRunner();
+        queryRunner.update(connection, "update product set pnum = pnum - ? where pid = ?", pnum, pid);
+    }
 
 
     @Override
